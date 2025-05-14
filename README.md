@@ -50,7 +50,7 @@ A full stack task management system that is designed for small teams to help man
   | |-routes/ # API route handler
   | |-.env # Enviornment variable
   | |-index.js # main server file
-  | |-package.json
+  | └── package.json
   |
   | |-task-manager-frontend/
   | |-public/ # static assests
