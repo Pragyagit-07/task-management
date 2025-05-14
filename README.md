@@ -14,7 +14,7 @@ A full stack task management system that is designed for small teams to help man
 - **User Dashboard**
   - View created and assigned tasks
   - See overdue tasks
- **Search & Filter**
+- **Search & Filter**
   - Search by title or description
   - Filter by status, priority, and due date
 ---
