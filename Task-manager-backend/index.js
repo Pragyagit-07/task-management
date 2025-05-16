@@ -14,10 +14,21 @@ const allowedOrigins = [
   'http://localhost:3000',
   'https://task-management-zf2n-git-main-pragyas-projects-35058125.vercel.app'
 ];
-app.use(cors({
-  origin: allowedOrigins,  // your frontend origin
-  credentials: true,
-}));
+// CORS options
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Allow credentials (cookies, authorization headers)
+};
+
+app.use(cors(corsOptions)); // Apply CORS middleware globally 
+  
+
 app.use(express.json());
 //Import routes
 const authRoutes = require('./routes/auth');
