@@ -41,6 +41,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
     setError(err.response.data.message);
   } else {
     setError('An error occurred');
+        console.error('Error details:', err); // Log the error for debugging
   }
   }
   };
