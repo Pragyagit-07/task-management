@@ -10,8 +10,12 @@ const app = express();
 
 
 // Allow frontend to access backend APIs with credentials 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://task-management-orcin-one.vercel.app'
+];
 app.use(cors({
-  origin: 'http://localhost:3000',  // your frontend origin
+  origin: allowedOrigins,  // your frontend origin
   credentials: true,
 }));
 app.use(express.json());

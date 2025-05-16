@@ -13,12 +13,12 @@ export default function AuthForm({ login }: AuthFormProps) {
    const [name, setName] = useState(''); // Only used for registration
   const [error, setError] = useState('');
   const router = useRouter();
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try{
     if (login) {
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      const res = await axios.post(`${API_URL}/api/auth/login`, {
           email,
           password,
         });
@@ -26,7 +26,7 @@ export default function AuthForm({ login }: AuthFormProps) {
         localStorage.setItem('token', token); // Store token
         router.push('/dashboard');
       } else {
-        await axios.post('http://localhost:5000/api/auth/register', {
+        await axios.post(`${API_URL}/api/auth/register`, {
           name,
           email,
           password,
