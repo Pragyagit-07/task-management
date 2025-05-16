@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useCallback } from 'react';
 import axios from 'axios';
 import Notifications from '@/components/Notifications';
 import TaskCard from '@/components/TaskCard';
@@ -22,13 +22,8 @@ export default function DashboardPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null); 
-  const [stats, setStats] = useState({
-    totalTasks: 0,
-    overdueTasks: 0,
-    completedTasks: 0,
-  });
-  useEffect(() => {
-    const fetchTasks = async () => {
+
+    const fetchTasks = useCallback( async () => {
       try {
         const token = localStorage.getItem('token'); 
       if (!token) {
@@ -49,17 +44,20 @@ if (Array.isArray(data)) {
   console.warn('Expected an array but got:', data);
   setTasks([]); // Fallback to empty array
 }
-        // setTasks(response.data);
+        
       } catch (error) {
         console.error('Failed to fetch tasks:', error);
         setError('An error occurred while fetching tasks. Please try again later.');
       } finally {
         setLoading(false);
       }
-    };
+      }, []);
+    
 
+    useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [fetchTasks]);
+
   
 
 

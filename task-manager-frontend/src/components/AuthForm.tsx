@@ -23,7 +23,7 @@ export default function AuthForm({ login }: AuthFormProps) {
           password,
         });
         const { token } = res.data;
-        localStorage.setItem('token', res.data.token); // Store token
+        localStorage.setItem('token', token); // Store token
         router.push('/dashboard');
       } else {
         await axios.post('http://localhost:5000/api/auth/register', {
@@ -35,11 +35,15 @@ export default function AuthForm({ login }: AuthFormProps) {
         // After successful registration, redirect to login page
         router.push('/login');
       }
-    } catch(err: any) {
-      setError(err.response?.data?.message || 'An error occurred');
-    }
-  };
+    } catch(err: unknown) {
 
+     if (axios.isAxiosError(err) && err.response?.data?.message) {
+    setError(err.response.data.message);
+  } else {
+    setError('An error occurred');
+  }
+  }
+  };
   return (
     <div className="max-w-md mx-auto bg-white p-6 shadow-md rounded">
       <h1 className="text-2xl font-bold mb-4">{login ? 'Login' : 'Register'}</h1>

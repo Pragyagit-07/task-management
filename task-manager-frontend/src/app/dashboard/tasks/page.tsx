@@ -1,6 +1,6 @@
 //  src/app/dashboard/tasks/page.tsx
  'use client';
-  import { useEffect, useState } from 'react';
+  import { useEffect, useState ,useCallback} from 'react';
 import TaskCard from '@/components/TaskCard';
 import axios from 'axios';
 
@@ -21,11 +21,11 @@ export default function AllTasksPage() {
   const [search, setSearch] = useState('');
 const [statusFilter, setStatusFilter] = useState('');
 const [priorityFilter, setPriorityFilter ] = useState('');
-const[assignedTo, setAssignedTo] = useState('');
+const[assignedTo] = useState('');
   const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
-    const fetchTasks = async () => {
+    const fetchTasks = useCallback(async () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
@@ -53,11 +53,14 @@ const[assignedTo, setAssignedTo] = useState('');
       } finally {
         setLoading(false);
       }
-    };
     
- useEffect(() => {
-  fetchTasks();
+    
+ 
   }, [search, statusFilter, priorityFilter,assignedTo]);
+  useEffect(() => {
+  fetchTasks();
+}, [fetchTasks]);
+
 const handleDelete = async (taskId: string) => {
   const token = localStorage.getItem('token');
   if (!token) return;

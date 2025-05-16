@@ -1,3 +1,4 @@
+//src/app/dashboard/tasks/[id]/edit/page.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -32,7 +33,7 @@ export default function EditTaskPage() {
     };
 
     if (id) fetchTask();
-  }, [id]);
+  }, [id , router]);
 
   if (loading) return <div>Loading...</div>;
 
