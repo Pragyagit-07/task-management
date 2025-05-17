@@ -12,7 +12,7 @@ const app = express();
 // Allow frontend to access backend APIs with credentials 
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://task-management-zf2n-git-main-pragyas-projects-35058125.vercel.app'
+  'https://task-management-zf2n.vercel.app'
 ];
 // CORS options
 const corsOptions = {
