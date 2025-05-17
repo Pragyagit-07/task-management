@@ -15,14 +15,7 @@ const allowedOrigins = [
   'https://task-management-zf2n.vercel.app'
 
 ];
-// const corsOptions = {
-//   origin: allowedOrigins,
-//   credentials: true,
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Authorization'],
-//   preflightContinue: false,
-//   optionsSuccessStatus: 204
-// };
+
 // CORS options
 const corsOptions = {
   origin: function (origin, callback) {
@@ -36,6 +29,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions)); // Apply CORS middleware globally 
+app.options('*', cors(corsOptions)); // <-- Important for preflight
   
 
 app.use(express.json());
