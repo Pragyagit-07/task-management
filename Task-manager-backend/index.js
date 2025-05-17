@@ -14,17 +14,21 @@ const allowedOrigins = [
   'http://localhost:3000',
   'https://task-management-zf2n-pxi7o78j7-pragyas-projects-35058125.vercel.app'
 ];
-// CORS options
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // Allow credentials (cookies, authorization headers)
+  origin: allowedOrigins,
+  credentials: true,
 };
+// // CORS options
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true, // Allow credentials (cookies, authorization headers)
+// };
 
 app.use(cors(corsOptions)); // Apply CORS middleware globally 
   
