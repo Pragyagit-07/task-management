@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 const router = express.Router();
 
 
-dotenv.config();
+require('dotenv').config();
 
 
 
@@ -55,6 +55,7 @@ router.post('/login', async (req, res) => {
     }
 
     // Generate JWT token
+    console.log("JWT_SECRET at login:", process.env.JWT_SECRET);
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
   } catch (err) {
