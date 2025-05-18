@@ -28,8 +28,7 @@ const corsOptions = {
   credentials: true, // Allow credentials (cookies, authorization headers)
 };
 
-app.use(cors(corsOptions)); // Apply CORS middleware globally 
-app.options('*', cors(corsOptions)); // <-- Important for preflight
+app.use(cors(corsOptions)); // Apply CORS middleware globally  
   
 
 app.use(express.json());
