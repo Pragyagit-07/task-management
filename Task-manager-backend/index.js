@@ -25,9 +25,10 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true, // Allow credentials (cookies, authorization headers)
+     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: 'Content-Type, Authorization', // Allow authorization headers
-  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+
+  credentials: true, // Allow credentials (cookies, authorization headers)
 };
 
 app.use(cors(corsOptions)); // Apply CORS middleware globally  
