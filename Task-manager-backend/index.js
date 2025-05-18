@@ -29,10 +29,14 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions)); // Apply CORS middleware globally 
-// app.options('*', cors(corsOptions)); // <-- Important for preflight
+app.options('*', cors(corsOptions)); // <-- Important for preflight
   
 
 app.use(express.json());
+//  Basic Route (to check if server is working)
+app.get('/', (req, res) => {
+  res.send('API is live ');
+});
 //Import routes
 const authRoutes = require('./routes/auth');
 const taskRoutes = require('./routes/tasks');
