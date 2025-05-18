@@ -12,9 +12,27 @@ const app = express();
 // Allow frontend to access backend APIs with credentials 
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://task-management-zf2n.vercel.app'
+  'https://task-management-zf2n.vercel.app',
 
 ];
+// // CORS middleware (manual)
+// app.use((req, res, next) => {
+//   const origin = req.headers.origin;
+//   if (allowedOrigins.includes(origin)) {
+//     res.setHeader('Access-Control-Allow-Origin', origin);
+//   }
+
+//   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   res.setHeader('Access-Control-Allow-Credentials', 'true');
+
+//   if (req.method === 'OPTIONS') {
+//     return res.sendStatus(200); // Preflight success
+//   }
+
+//   next();
+// });
+
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -26,7 +44,7 @@ const corsOptions = {
   },
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  credentials: true,
 };
 app.use(cors(corsOptions)); // Apply CORS middleware globally 
 
