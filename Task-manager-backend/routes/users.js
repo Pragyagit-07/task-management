@@ -70,3 +70,4 @@ router.delete('/notifications/:notificationId', authMiddleware, async (req, res)
 
 
 module.exports = router;
+ 

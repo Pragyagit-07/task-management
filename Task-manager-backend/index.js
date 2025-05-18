@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-// const dotenv = require('dotenv');
+ const dotenv = require('dotenv');
 require('dotenv').config(); // load .env variables
 const app = express();
 // Middleware
@@ -29,7 +29,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions)); // Apply CORS middleware globally 
-app.options('*', cors(corsOptions)); // <-- Important for preflight
+// app.options('*', cors(corsOptions)); // <-- Important for preflight
   
 
 app.use(express.json());

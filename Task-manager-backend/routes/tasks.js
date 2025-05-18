@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
 const Task = require('../models/Task');
 const authMiddleware = require('../middleware/auth');
 const User = require('../models/User');
@@ -9,8 +8,8 @@ const router = express.Router();
 router.use(authMiddleware);
 
 // Create Task
-router.post('/', authMiddleware, async (req, res) => {
-  const { title, description, dueDate, priority, assignedTo , createdBy } = req.body;
+router.post('/',  async (req, res) => {
+  const { title, description, dueDate, priority, assignedTo } = req.body;
 if (!title || !description || !dueDate) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
@@ -78,42 +77,6 @@ router.get('/dashboard', async (req, res) => {
   }
 });
 
-
-
-// Get Tasks assigned to user
-router.get('/assigned', async (req, res) => {
-  try {
-    const tasks = await Task.find({ assignedTo: req.userId });
-    res.json(tasks);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-
-
-
-// Update Task
-router.put('/:taskId', async (req, res) => {
-  const { taskId } = req.params;
-  const { title, description, dueDate, priority, status } = req.body;
-
-  try {
-    const task = await Task.findByIdAndUpdate(taskId, {
-      title,
-      description,
-      dueDate,
-      priority,
-      status,
-    }, { new: true });
-
-    res.json(task);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
 // Search and Filter Route
 router.get('/search', async (req, res) => {
   const { title, description, status, priority, dueDate ,assignedTo} = req.query;
@@ -139,7 +102,18 @@ router.get('/search', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
- // Get single task by ID
+
+// Get Tasks assigned to user
+router.get('/assigned', async (req, res) => {
+  try {
+    const tasks = await Task.find({ assignedTo: req.userId });
+    res.json(tasks);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+// Get single task by ID
 router.get('/:taskId', async (req, res) => {
   const { taskId } = req.params;
 
@@ -157,6 +131,31 @@ router.get('/:taskId', async (req, res) => {
 });
 
 
+
+// Update Task
+router.put('/:taskId', async (req, res) => {
+  const { taskId } = req.params;
+  const { title, description, dueDate, priority, status } = req.body;
+
+  try {
+    const task = await Task.findByIdAndUpdate(taskId, {
+      title,
+      description,
+      dueDate,
+      priority,
+      status,
+    }, { new: true });
+
+    res.json(task);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+ 
+
+
 // Delete Task
 router.delete('/:taskId', async (req, res) => {
   const { taskId } = req.params;
@@ -171,3 +170,4 @@ router.delete('/:taskId', async (req, res) => {
 });
 
 module.exports = router;
+        
