@@ -26,6 +26,8 @@ const corsOptions = {
     }
   },
   credentials: true, // Allow credentials (cookies, authorization headers)
+  allowedHeaders: 'Content-Type, Authorization', // Allow authorization headers
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
 };
 
 app.use(cors(corsOptions)); // Apply CORS middleware globally  
