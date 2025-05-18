@@ -16,7 +16,6 @@ const allowedOrigins = [
 
 ];
 
-// CORS options
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -25,13 +24,13 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
-     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type, Authorization'], // Allow authorization headers
-
-  credentials: true, // Allow credentials (cookies, authorization headers)
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 };
+app.use(cors(corsOptions)); // Apply CORS middleware globally 
 
-app.use(cors(corsOptions)); // Apply CORS middleware globally  
+
   
 
 app.use(express.json());
