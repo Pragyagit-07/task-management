@@ -1,7 +1,9 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
- import axios from 'axios'; 
+//  import axios from 'axios'; 
+ import axios from './utils/axios';
+ import * as rawAxios from 'axios';
 
 type AuthFormProps = {
   login?: boolean;
@@ -37,7 +39,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
       }
     } catch(err: unknown) {
 
-     if (axios.isAxiosError(err) && err.response?.data?.message) {
+     if (rawAxios.isAxiosError(err) && err.response?.data?.message) {
     setError(err.response.data.message);
   } else {
     setError('An error occurred');
