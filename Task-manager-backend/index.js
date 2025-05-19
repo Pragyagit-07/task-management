@@ -43,6 +43,8 @@ const corsOptions = {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      
+      console.log(' Blocked origin:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },
@@ -51,6 +53,7 @@ const corsOptions = {
   credentials: true,
 };
 app.use(cors(corsOptions)); // Apply CORS middleware globally 
+app.options('*', cors(corsOptions));
 app.use(express.json());
 //  Basic Route (to check if server is working)
 app.get('/', (req, res) => {
