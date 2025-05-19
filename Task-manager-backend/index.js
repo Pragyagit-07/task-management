@@ -5,7 +5,11 @@ const mongoose = require('mongoose');
  const dotenv = require('dotenv');
 require('dotenv').config(); // load .env variables
 const app = express();
-// Middleware
+
+app.use((req, res, next) => {
+  console.log('Origin:', req.headers.origin); // Logs the origin of the request
+  next();
+});
 
 
 
@@ -47,10 +51,6 @@ const corsOptions = {
   credentials: true,
 };
 app.use(cors(corsOptions)); // Apply CORS middleware globally 
-
-
-  
-
 app.use(express.json());
 //  Basic Route (to check if server is working)
 app.get('/', (req, res) => {
