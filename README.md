@@ -32,7 +32,7 @@ A full stack task management system that is designed for small teams to help man
 ### Backend
 - [Node.js]
 - [Express]
-- [MongoDB])
+- [MongoDB]
 - [Mongoose]
 - [bcryptjs]
 - [jsonwebtoken]
