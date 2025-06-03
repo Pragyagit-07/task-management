@@ -2,7 +2,7 @@
 A full stack task management system that is designed for small teams to help manage their tasks efficiently. It includes essential functionalities such as user authentication, task management(CRUD) and more.
 
 ## Features
-- - **User Authentication**
+- **User Authentication**
   - Register and log in securely
   - JWT-based session management
 - **Task Management**
