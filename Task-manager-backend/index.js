@@ -50,7 +50,7 @@ app.use(cors({
 //   allowedHeaders: ['Content-Type', 'Authorization'],
   
 // };
-app.use(cors(corsOptions)); // Apply CORS middleware globally 
+// app.use(cors(corsOptions)); // Apply CORS middleware globally 
 app.use(express.json());
 // Log origin for debugging
 app.use((req, res, next) => {
