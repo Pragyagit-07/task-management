@@ -35,7 +35,7 @@ const corsOptions = {
     
 
 
- g   // if (!origin || allowedOrigins.includes(origin)) {
+    // if (!origin || allowedOrigins.includes(origin)) {
     //   callback(null, true);
     // } else {
       
