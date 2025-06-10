@@ -2,14 +2,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
  const cors = require('cors');
- const dotenv = require('dotenv');
+ //const dotenv = require('dotenv');
 require('dotenv').config(); // load .env variables
 const app = express();
 
-app.use((req, res, next) => {
-  console.log('Origin:', req.headers.origin); // Logs the origin of the request
-  next();
-});
+
 
 
 
@@ -43,9 +40,12 @@ const corsOptions = {
   
 };
 app.use(cors(corsOptions)); // Apply CORS middleware globally 
-
-   
 app.use(express.json());
+// Log origin for debugging
+app.use((req, res, next) => {
+  console.log('Request Origin:', req.headers.origin);
+  next();
+});
 //  Basic Route (to check if server is working)
 app.get('/', (req, res) => {
   res.send('API is live ');
