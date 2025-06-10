@@ -24,13 +24,24 @@ const allowedOrigins = [
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+     console.log('Origin:', origin);
+      if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      
-      console.log(' Blocked origin:', origin);
+      console.log('Blocked origin:', origin);
       callback(new Error('Not allowed by CORS'));
     }
+  
+    
+
+
+    // if (!origin || allowedOrigins.includes(origin)) {
+    //   callback(null, true);
+    // } else {
+      
+    //   console.log(' Blocked origin:', origin);
+    //   callback(new Error('Not allowed by CORS'));
+    // }
   },
   methods: ['GET', 'POST',  'PUT','PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
