@@ -1,7 +1,8 @@
 // index.js 
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
- const cors = require('cors');
+ 
  //const dotenv = require('dotenv');
 require('dotenv').config(); // load .env variables
 const app = express();
@@ -16,29 +17,39 @@ const allowedOrigins = [
   'https://task-management-zf2n.vercel.app',
 
 ];
-
-
-
-const corsOptions = {
+//  Setup CORS — apply FIRST, before express.json()
+app.use(cors({
   origin: function (origin, callback) {
-     console.log('Origin:', origin);
-      if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      console.log('Blocked origin:', origin);
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error("Not allowed by CORS"));
     }
-  
-    
-
-
-    
   },
-  credentials: true,
-  methods: ['GET', 'POST',  'PUT','PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
+
+
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//      console.log('Origin:', origin);
+//       if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       console.log('Blocked origin:', origin);
+//       callback(new Error('Not allowed by CORS'));
+//     }
   
-};
+    
+
+
+    
+//   },
+//   credentials: true,
+//   methods: ['GET', 'POST',  'PUT','PATCH', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+  
+// };
 app.use(cors(corsOptions)); // Apply CORS middleware globally 
 app.use(express.json());
 // Log origin for debugging
