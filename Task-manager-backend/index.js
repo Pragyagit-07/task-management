@@ -35,13 +35,7 @@ const corsOptions = {
     
 
 
-    // if (!origin || allowedOrigins.includes(origin)) {
-    //   callback(null, true);
-    // } else {
-      
-    //   console.log(' Blocked origin:', origin);
-    //   callback(new Error('Not allowed by CORS'));
-    // }
+    
   },
   credentials: true,
   methods: ['GET', 'POST',  'PUT','PATCH', 'DELETE', 'OPTIONS'],
@@ -49,17 +43,8 @@ const corsOptions = {
   
 };
 app.use(cors(corsOptions)); // Apply CORS middleware globally 
-app.use((req, res, next) => {
-  if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    return res.sendStatus(200);
-  }
-  next();
-});
-// app.options('*', cors(corsOptions));
+
+   
 app.use(express.json());
 //  Basic Route (to check if server is working)
 app.get('/', (req, res) => {
