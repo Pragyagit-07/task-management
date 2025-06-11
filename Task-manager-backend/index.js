@@ -33,7 +33,9 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'],
    optionsSuccessStatus: 200 
 };
-app.use(cors(corsOptions)); // Apply CORS middleware globally 
+app.use(cors(corsOptions)); 
+app.options('*', cors(corsOptions));
+
 app.use(express.json());
 // Log origin for debugging
 app.use((req, res, next) => {
