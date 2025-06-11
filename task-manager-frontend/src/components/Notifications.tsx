@@ -21,7 +21,7 @@ export default function Notifications() {
         
         if (!token) return;
 
-        const res = await axios.get('http://localhost:5000/api/users/notifications', {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users/notifications`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -39,7 +39,7 @@ export default function Notifications() {
   }, [token]);
    const markAsRead = async (id: string) => {
     try {
-      await axios.patch(`http://localhost:5000/api/users/notifications/${id}`, null, {
+      await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/notifications/${id}`, null, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNotifications((prev) =>
@@ -54,7 +54,7 @@ export default function Notifications() {
 
   const deleteNotification = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:5000/api/users/notifications/${id}`, {
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/users/notifications/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNotifications((prev) => prev.filter((notif) => notif._id !== id));
