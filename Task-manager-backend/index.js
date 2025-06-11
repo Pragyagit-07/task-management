@@ -31,7 +31,7 @@ const corsOptions = {
   credentials: true,
   methods: ['GET', 'POST',  'PUT','PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  
+   optionsSuccessStatus: 200 
 };
 app.use(cors(corsOptions)); // Apply CORS middleware globally 
 app.use(express.json());
