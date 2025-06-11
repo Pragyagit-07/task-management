@@ -87,7 +87,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
         </button>
 {login && (
   <p className="text-sm mt-2 text-right">
-    <a href="/forgot-password" className="text-blue-600 underline">
+    <a href="/forget-password" className="text-blue-600 underline">
       Forgot Password?
     </a>
   </p>
