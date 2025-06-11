@@ -14,6 +14,8 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, required: true },
    notifications: 
    [NotificationSchema],
+otp: { type: String },
+otpExpiry: { type: Date },
 
 
   
