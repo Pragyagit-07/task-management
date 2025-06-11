@@ -83,7 +83,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
           className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
         >
           {login ? 'Login' : 'Register'}
-        </button>
+        
         
 {login && (
   <p className="text-sm mt-2 text-right">
@@ -95,11 +95,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 {error && <p className="text-red-500">{error}</p>}
 
-<button
-  type="submit"
-  className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
->
-  {login ? 'Login' : 'Register'}
+
 </button>
 
       </form>
