@@ -17,40 +17,24 @@ const allowedOrigins = [
   'https://task-management-zf2n.vercel.app',
 
 ];
-//  Setup CORS — apply FIRST, before express.json()
-app.use(cors({
+
+
+
+const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-}));
-
-
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//      console.log('Origin:', origin);
-//       if (!origin || allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       console.log('Blocked origin:', origin);
-//       callback(new Error('Not allowed by CORS'));
-//     }
+     console.log('Origin:', origin);
+      if (!origin || allowedOrigins.includes(origin)) {
+     return callback(null, true);
+    } 
+      console.log('Blocked origin:', origin);
+     return callback(null, false);
+    },
+  credentials: true,
+  methods: ['GET', 'POST',  'PUT','PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   
-    
-
-
-    
-//   },
-//   credentials: true,
-//   methods: ['GET', 'POST',  'PUT','PATCH', 'DELETE', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Authorization'],
-  
-// };
-// app.use(cors(corsOptions)); // Apply CORS middleware globally 
+};
+app.use(cors(corsOptions)); // Apply CORS middleware globally 
 app.use(express.json());
 // Log origin for debugging
 app.use((req, res, next) => {
