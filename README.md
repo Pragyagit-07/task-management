@@ -86,6 +86,10 @@ A full stack task management system that is designed for small teams to help man
 
   ### Frontend Deployment: Vercel
   - Frontend is hosted on:  [Vercel](https://vercel.com).
-  - Acesses the live app: https://task-management-zf2n.vercel.app/
+  - Acesses the live app: (https://task-management-zf2n.vercel.app/)
+
+### Backend Deployment: Render
+ - Backend is hosted on: [Render](https://render.com).
+ - API is accessible at: (https://task-management-sq7a.onrender.com)
   
   
