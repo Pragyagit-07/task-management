@@ -9,14 +9,13 @@ const app = express();
 
 
 
-
-
 // Allow frontend to access backend APIs with credentials 
 const allowedOrigins = [
   'http://localhost:3000',
   'https://task-management-zf2n.vercel.app',
 
 ];
+
 
 
 
