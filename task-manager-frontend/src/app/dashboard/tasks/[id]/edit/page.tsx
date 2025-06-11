@@ -17,7 +17,9 @@ export default function EditTaskPage() {
     const fetchTask = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:5000/api/tasks/${id}`, {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/tasks/${id}`, {
+
+        // const res = await axios.get(`http://localhost:5000/api/tasks/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

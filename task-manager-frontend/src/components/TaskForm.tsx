@@ -46,7 +46,9 @@ const TaskForm = ({
     if (users.length === 0) {
       const token = localStorage.getItem('token');
     console.log('Token:', token); 
-      axios.get('http://localhost:5000/api/users',{
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users`, {
+
+      // axios.get('http://localhost:5000/api/users',{
 headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
@@ -64,13 +66,18 @@ headers: {
     console.log('Token:', token);
     try {
       if (mode === 'edit' && taskId) {
-        await axios.put(`http://localhost:5000/api/tasks/${taskId}`, data, {
+        
+        await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/tasks/${taskId}`, data, {
+
+        // await axios.put(`http://localhost:5000/api/tasks/${taskId}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       } else {
-        await axios.post('http://localhost:5000/api/tasks', data, {
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/tasks`, data, {
+
+        // await axios.post('http://localhost:5000/api/tasks', data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

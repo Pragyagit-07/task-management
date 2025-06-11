@@ -31,7 +31,9 @@ export default function DashboardPage() {
         setLoading(false);
         return;
       }
-        const response = await axios.get('http://localhost:5000/api/tasks/dashboard', {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/tasks/dashboard`, {
+
+        // const response = await axios.get('http://localhost:5000/api/tasks/dashboard', {
   headers: {
   
     Authorization: `Bearer ${token}`,

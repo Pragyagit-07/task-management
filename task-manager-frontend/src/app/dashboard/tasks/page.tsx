@@ -36,8 +36,9 @@ const[assignedTo] = useState('');
     if (statusFilter) params.append('status', statusFilter);
     if (priorityFilter) params.append('priority', priorityFilter);
     if (assignedTo && assignedTo.trim() !== '') params.append('assignedTo', assignedTo);
- 
-        const res = await axios.get(`http://localhost:5000/api/tasks/search?${params.toString()}`, {
+ const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/tasks/search?${params.toString()}`, {
+
+        // const res = await axios.get(`http://localhost:5000/api/tasks/search?${params.toString()}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -66,7 +67,9 @@ const handleDelete = async (taskId: string) => {
   if (!token) return;
 
   try {
-    await axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
+    await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/tasks/${taskId}`, {
+
+    // await axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
