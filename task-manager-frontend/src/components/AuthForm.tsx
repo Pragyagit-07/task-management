@@ -84,7 +84,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
         >
           {login ? 'Login' : 'Register'}
         
-        
+        </button>
 {login && (
   <p className="text-sm mt-2 text-right">
     <a href="/forgot-password" className="text-blue-600 underline">
@@ -93,10 +93,10 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
   </p>
 )}
 
-{error && <p className="text-red-500">{error}</p>}
 
 
-</button>
+
+
 
       </form>
     </div>
