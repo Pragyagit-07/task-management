@@ -15,8 +15,12 @@ export default function ForgotPassword() {
       const res = await axios.post('/api/auth/forgot-password', { email });
       setMessage(`OTP sent successfully. OTP (for demo): ${res.data.otp}`);
       setStep(2);
-    } catch (err: any) {
-      setError(err?.response?.data?.message || 'Error sending OTP');
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err) && err.response) {
+        setError(err.response.data?.message || 'Error sending OTP');
+      } else {
+        setError('Error sending OTP');
+      }
     }
   };
 
@@ -24,8 +28,12 @@ export default function ForgotPassword() {
     try {
       await axios.post('/api/auth/reset-password', { email, otp, newPassword });
       setMessage('Password reset successfully! You can now log in.');
-    } catch (err: any) {
-      setError(err?.response?.data?.message || 'Error resetting password');
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err) && err.response) {
+        setError(err.response.data?.message || 'Error resetting password');
+      } else {
+        setError('Error resetting password');
+      }
     }
   };
 
